@@ -39,43 +39,85 @@
             font-weight: 400;
         }
 
-        /* --- Envelope Intro Screen --- */
+        /* --- Permanent Background Setup --- */
+        .permanent-bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Using the exact uploaded palace image with the soft zoom effect */
+        .bg-image {
+            width: 100%;
+            height: 100%;
+            background-image: url('image_2.png');
+            background-size: cover;
+            background-position: center 35%;
+            animation: bgZoom 25s infinite alternate linear;
+        }
+
+        @keyframes bgZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.12); }
+        }
+
+        /* --- Envelope Intro Overlay --- */
         #intro-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: var(--cream);
-            background-image: radial-gradient(circle at center, var(--ivory) 0%, var(--cream) 100%);
+            background: rgba(253, 251, 247, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 1.5s ease, visibility 1.5s ease;
+            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.5s;
             flex-direction: column;
         }
 
         .tap-text {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            color: var(--soft-gold);
-            margin-bottom: 30px;
-            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+            font-size: 1.2rem;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.6; transform: scale(1); }
+            0%, 100% { opacity: 0.7; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.05); }
         }
 
-        .envelope-container {
+        /* --- Luxury Realistic 3D Envelope --- */
+        .envelope-wrapper {
             position: relative;
             width: 320px;
             height: 220px;
-            cursor: pointer;
             perspective: 1000px;
+        }
+
+        .envelope-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+
+        .envelope-container:hover {
+            transform: translateY(-5px);
         }
 
         .envelope-back {
@@ -83,8 +125,8 @@
             width: 100%;
             height: 100%;
             background-color: var(--sage-dark);
-            border-radius: 5px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         .invitation-card-preview {
@@ -95,16 +137,18 @@
             height: 200px;
             background: var(--ivory);
             border: 2px solid var(--soft-gold);
-            border-radius: 5px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-family: 'Great Vibes', cursive;
-            font-size: 24px;
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            letter-spacing: 2px;
             color: var(--soft-gold);
-            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+            transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s;
             z-index: 2;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .envelope-front {
@@ -114,7 +158,7 @@
             height: 0;
             border-left: 160px solid transparent;
             border-right: 160px solid transparent;
-            border-bottom: 110px solid var(--sage-green);
+            border-bottom: 115px solid var(--sage-green);
             z-index: 3;
         }
 
@@ -151,9 +195,9 @@
             border-right: 160px solid transparent;
             border-top: 120px solid var(--sage-green);
             transform-origin: top;
-            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.3s;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.4s;
             z-index: 5;
-            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 6px 5px rgba(0,0,0,0.15));
         }
 
         .wax-seal {
@@ -166,147 +210,138 @@
             background: radial-gradient(circle, #E1C17A 0%, var(--soft-gold) 100%);
             border-radius: 25px;
             z-index: 6;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.5);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 2px 5px rgba(255,255,255,0.5);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Cinzel', serif;
             color: #fff;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             letter-spacing: 1px;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
-        /* Envelope Open Animations */
+        /* Envelope Opening Interactive States */
         .envelope-container.open .envelope-flap {
             transform: rotateX(180deg);
             z-index: 1;
         }
         .envelope-container.open .wax-seal {
             opacity: 0;
+            transform: translateX(-50%) scale(0.8);
         }
         .envelope-container.open .invitation-card-preview {
             transform: translateY(-160px);
         }
 
-        /* Floating Hearts */
-        .heart {
+        /* --- Dynamic Particles (Hearts & Sparkles) --- */
+        .particle {
             position: absolute;
-            color: #d11a2a;
-            font-size: 20px;
+            pointer-events: none;
             opacity: 0;
             z-index: 10;
-            animation: floatUp 3s ease-in forwards;
+            transform: translate(-50%, -50%);
         }
 
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(0.5); opacity: 1; }
-            100% { transform: translateY(-300px) scale(1.5); opacity: 0; }
+        @keyframes dynamicFloat {
+            0% {
+                transform: translate(-50%, 0) scale(0.3) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--end-x), var(--end-y)) scale(var(--end-scale)) rotate(var(--end-rotate));
+                opacity: 0;
+            }
         }
 
-        /* --- Main Website Content --- */
+        /* --- Main Layout Overlays --- */
         #main-content {
+            position: relative;
+            z-index: 2;
             display: none;
             opacity: 0;
             transition: opacity 2s ease;
         }
 
         .hero-section {
-            position: relative;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            padding: 20px;
         }
 
-        /* Background Zoom */
-        .bg-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            animation: bgZoom 25s infinite alternate linear;
-            z-index: -1;
-        }
-
-        @keyframes bgZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
-        }
-
-        /* Glassmorphism Card */
+        /* Premium Glassmorphism Container */
         .glass-card {
-            background: rgba(253, 251, 247, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(197, 168, 105, 0.3);
-            border-radius: 20px;
-            padding: 50px 30px;
+            background: rgba(253, 251, 247, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 168, 105, 0.35);
+            border-radius: 24px;
+            padding: 60px 35px;
             text-align: center;
-            width: 90%;
+            width: 100%;
             max-width: 600px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         }
 
         .glass-card .grace-text {
             font-family: 'Cinzel', serif;
             color: var(--soft-gold);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             letter-spacing: 2px;
             margin-bottom: 15px;
         }
 
         .glass-card .families-text {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--text-light);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .glass-card h1 {
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             letter-spacing: 4px;
-            color: var(--sage-dark);
+            color: var(--text-dark);
             margin-bottom: 20px;
             line-height: 1.3;
         }
 
         .glass-card .ampersand {
             font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
+            font-size: 3.2rem;
             color: var(--soft-gold);
             display: block;
-            margin: -10px 0;
+            margin: -8px 0;
         }
 
         .glass-card .presence-text {
-            font-size: 1rem;
-            line-height: 1.8;
-            text-transform: none;
+            font-size: 1.05rem;
+            line-height: 1.9;
             color: var(--text-dark);
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         /* --- Content Sections --- */
         section {
-            padding: 80px 20px;
+            position: relative;
+            padding: 90px 20px;
             text-align: center;
         }
 
-        .bg-sage { background-color: var(--sage-green); color: var(--ivory); }
         .bg-cream { background-color: var(--cream); }
+        .bg-sage { background-color: var(--sage-green); color: var(--ivory); }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 2.1rem;
             color: var(--soft-gold);
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             letter-spacing: 3px;
         }
 
@@ -322,7 +357,7 @@
             color: var(--text-dark);
         }
 
-        /* --- Countdown --- */
+        /* --- Premium Countdown System --- */
         .countdown-wrapper {
             display: flex;
             justify-content: center;
@@ -332,29 +367,32 @@
         }
 
         .time-box {
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 10px;
-            padding: 20px;
-            min-width: 100px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 12px;
+            padding: 25px 20px;
+            min-width: 110px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.06);
         }
 
         .time-box span {
             display: block;
             font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             margin-bottom: 5px;
+            font-weight: 600;
         }
 
         .time-box label {
             font-size: 0.75rem;
             letter-spacing: 2px;
             text-transform: uppercase;
+            opacity: 0.9;
         }
 
-        /* --- Venue & Details --- */
+        /* --- Cards & Grid Layouts --- */
         .details-grid {
             display: flex;
             max-width: 900px;
@@ -366,84 +404,90 @@
 
         .detail-card {
             background: #fff;
-            padding: 40px;
-            border-radius: 15px;
+            padding: 45px 35px;
+            border-radius: 16px;
             flex: 1;
             min-width: 300px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.04);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
             border-top: 4px solid var(--soft-gold);
         }
 
         .detail-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
         }
 
         .detail-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 15px;
             color: var(--sage-dark);
+            letter-spacing: 1px;
         }
 
         .detail-card p {
             line-height: 1.8;
             color: var(--text-light);
-            margin-bottom: 10px;
+            font-size: 1.05rem;
         }
 
         .btn-gold {
             display: inline-block;
             background-color: var(--soft-gold);
             color: #fff;
-            padding: 12px 30px;
+            padding: 14px 35px;
             text-decoration: none;
             border-radius: 30px;
             font-size: 0.9rem;
-            letter-spacing: 1.5px;
-            margin-top: 20px;
-            transition: background 0.3s, transform 0.3s;
+            letter-spacing: 2px;
+            margin-top: 25px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(197, 168, 105, 0.3);
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
         }
 
         .btn-gold:hover {
             background-color: #aa8d51;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(197, 168, 105, 0.4);
         }
 
-        /* --- Footer --- */
+        /* --- Footer Layout --- */
         .footer {
             background-color: var(--cream);
-            padding: 80px 20px 0;
+            padding: 90px 20px 0;
             text-align: center;
         }
 
         .footer p {
-            max-width: 600px;
+            max-width: 620px;
             margin: 0 auto 20px;
-            line-height: 1.8;
+            line-height: 1.9;
+            font-size: 1.1rem;
             color: var(--text-light);
         }
 
         .signature {
             font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
+            font-size: 3.4rem;
             color: var(--soft-gold);
-            margin: 40px 0;
+            margin: 45px 0;
         }
 
         .bottom-bar {
             background-color: var(--sage-dark);
             color: var(--ivory);
-            padding: 20px;
-            font-size: 0.8rem;
+            padding: 25px;
+            font-size: 0.85rem;
             letter-spacing: 4px;
-            margin-top: 40px;
+            margin-top: 50px;
+            font-weight: 500;
         }
 
-        /* Scroll Animations */
+        /* --- Smooth Scroll Reveal Classes --- */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+            transition: all 1.2s cubic-bezier(0.215, 0.610, 0.355, 1);
         }
 
         .reveal.active {
@@ -451,35 +495,48 @@
             transform: translateY(0);
         }
 
+        /* --- Premium Mobile Optimization --- */
         @media (max-width: 768px) {
-            .glass-card h1 { font-size: 2rem; }
-            .section-title { font-size: 1.5rem; }
-            .envelope-container { transform: scale(0.9); }
+            .glass-card { padding: 45px 25px; }
+            .glass-card h1 { font-size: 2.1rem; }
+            .glass-card .ampersand { font-size: 2.6rem; }
+            .section-title { font-size: 1.6rem; }
+            .envelope-wrapper { transform: scale(0.88); }
+            section { padding: 70px 15px; }
+            .time-box { min-width: 85px; padding: 20px 10px; }
+            .time-box span { font-size: 2rem; }
+            .bg-image { background-position: center 30%; } /* Optimization to lift palace building up over mobile UI blocks */
         }
     </style>
 </head>
 <body>
 
-    <!-- Intro Envelope Screen -->
+    <!-- Permanent Background Structure -->
+    <div class="permanent-bg-container">
+        <div class="bg-image"></div>
+    </div>
+
+    <!-- Intro Envelope Screen Overlay -->
     <div id="intro-screen">
         <div class="tap-text">Tap to open</div>
-        <div class="envelope-container" id="envelope">
-            <div class="envelope-back"></div>
-            <div class="invitation-card-preview">A & N</div>
-            <div class="envelope-left"></div>
-            <div class="envelope-right"></div>
-            <div class="envelope-front"></div>
-            <div class="envelope-flap"></div>
-            <div class="wax-seal">A ♥ N</div>
+        <div class="envelope-wrapper">
+            <div class="envelope-container" id="envelope">
+                <div class="envelope-back"></div>
+                <div class="invitation-card-preview">A & N</div>
+                <div class="envelope-left"></div>
+                <div class="envelope-right"></div>
+                <div class="envelope-front"></div>
+                <div class="envelope-flap"></div>
+                <div class="wax-seal">A ♥ N</div>
+            </div>
         </div>
     </div>
 
-    <!-- Main Website Content -->
+    <!-- Main Website Content Structure -->
     <div id="main-content">
         
-        <!-- Hero Section -->
+        <!-- Hero Section Frame -->
         <section class="hero-section">
-            <div class="bg-image"></div>
             <div class="glass-card reveal">
                 <p class="grace-text">By the Grace of Allah,</p>
                 <p class="families-text">Together with their families,</p>
@@ -494,7 +551,7 @@
             </div>
         </section>
 
-        <!-- Invitation Section -->
+        <!-- Invitation Context Section -->
         <section class="bg-cream" style="padding: 100px 20px;">
             <div class="invitation-text reveal">
                 <p>
@@ -505,14 +562,14 @@
                 
                 <div style="height: 1px; width: 40px; background: var(--soft-gold); margin: 35px auto;"></div>
                 
-                <p style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-light); font-size: 1.2rem;">
+                <p style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-light); font-size: 1.25rem;">
                     We look forward to sharing this special day<br>
                     with our beloved family and friends.
                 </p>
             </div>
         </section>
 
-        <!-- Countdown Section -->
+        <!-- Countdown Block -->
         <section class="bg-sage">
             <h2 class="section-title reveal">COUNTDOWN TO OUR WEDDING DAY</h2>
             
@@ -536,33 +593,33 @@
             </div>
         </section>
 
-        <!-- Wedding Details & Venue Section -->
+        <!-- Info Details Frame -->
         <section class="bg-cream">
             <div class="details-grid">
                 <div class="detail-card reveal">
                     <div class="detail-icon">🗓️</div>
                     <h3>When</h3>
-                    <p>Friday, June 5, 2026</p>
+                    <p style="font-weight: 500; color: var(--text-dark); margin-bottom: 5px;">Friday, June 5, 2026</p>
                     <p>7:00 PM</p>
                 </div>
 
                 <div class="detail-card reveal">
                     <div class="detail-icon">🏛️</div>
                     <h3>Wedding Venue</h3>
-                    <p>Festival Hall</p>
+                    <p style="font-weight: 500; color: var(--text-dark); margin-bottom: 5px;">Festival Hall</p>
                     <p>Zagazig, Egypt</p>
                     <a href="https://maps.app.goo.gl/raRKWqD4DBFMRfLU8" target="_blank" class="btn-gold">OPEN LOCATION</a>
                 </div>
             </div>
         </section>
 
-        <!-- Footer Section -->
+        <!-- Final Signoff Block -->
         <footer class="footer">
-            <h2 class="section-title reveal" style="font-size: 1.5rem;">WE LOOK FORWARD TO CELEBRATING WITH YOU</h2>
+            <h2 class="section-title reveal" style="font-size: 1.5rem; margin-bottom: 25px;">WE LOOK FORWARD TO CELEBRATING WITH YOU</h2>
             <div class="reveal">
                 <p>Thank you for being part of our special day.</p>
                 <p>May Allah bless this gathering with happiness, mercy, tranquility, and countless beautiful memories.</p>
-                <p style="margin-top: 30px; font-family: 'Cinzel', serif; letter-spacing: 2px;">With Best Wishes,</p>
+                <p style="margin-top: 35px; font-family: 'Cinzel', serif; letter-spacing: 2px;">With Best Wishes,</p>
                 <div class="signature">Abdelrahman & Noha</div>
             </div>
             
@@ -573,9 +630,9 @@
 
     </div>
 
-    <!-- JavaScript Actions -->
+    <!-- Interactive Functionality scripts -->
     <script>
-        // 1. Envelope Animation Logic
+        // 1. Advanced Particle Engine (Multi-directional Hearts & Gold Sparkles)
         const envelope = document.getElementById('envelope');
         const introScreen = document.getElementById('intro-screen');
         const mainContent = document.getElementById('main-content');
@@ -588,8 +645,10 @@
             envelope.classList.add('open');
             document.querySelector('.tap-text').style.display = 'none';
 
-            createHearts();
+            // Fire premium particle bursts
+            generateLuxuryParticles();
 
+            // Transition smoothly to content without flashing background
             setTimeout(() => {
                 introScreen.style.opacity = '0';
                 
@@ -603,34 +662,78 @@
                     }, 50);
 
                 }, 1500); 
-            }, 2500); 
+            }, 2600); 
         });
 
-        // Generate Hearts (Increased count to 30)
-        function createHearts() {
-            for (let i = 0; i < 30; i++) {
+        function generateLuxuryParticles() {
+            // Mix of 30 Dynamic Red Hearts and 15 Luxury Gold Sparkles
+            const totalParticles = 45;
+
+            for (let i = 0; i < totalParticles; i++) {
                 setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.innerHTML = '❤️';
-                    heart.className = 'heart';
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
                     
-                    const left = 20 + Math.random() * 60; 
-                    const duration = 2 + Math.random() * 2; 
+                    const isHeart = i < 30;
+                    if (isHeart) {
+                        particle.innerHTML = '❤️';
+                        // Natural scale variance for hearts
+                        const size = 12 + Math.random() * 16; 
+                        particle.style.fontSize = size + 'px';
+                    } else {
+                        particle.innerHTML = '✨';
+                        const size = 10 + Math.random() * 14;
+                        particle.style.fontSize = size + 'px';
+                        particle.style.color = 'var(--soft-gold)';
+                    }
+
+                    // Randomize origins across all sides of envelope (left, right, center, top)
+                    const spawnType = Math.floor(Math.random() * 4);
+                    let startX = 160; 
+                    let startY = 110;
+
+                    if (spawnType === 0) { // Left Side
+                        startX = Math.random() * 40;
+                        startY = 50 + Math.random() * 120;
+                    } else if (spawnType === 1) { // Right Side
+                        startX = 280 + Math.random() * 40;
+                        startY = 50 + Math.random() * 120;
+                    } else if (spawnType === 2) { // Top Flap area
+                        startX = 60 + Math.random() * 200;
+                        startY = Math.random() * 50;
+                    } else { // Center Outward
+                        startX = 100 + Math.random() * 120;
+                        startY = 80 + Math.random() * 80;
+                    }
+
+                    // Dynamic path distribution
+                    const endX = (Math.random() - 0.5) * 350; 
+                    const endY = -250 - (Math.random() * 200); 
+                    const scale = 0.6 + Math.random() * 1.2;
+                    const rotate = (Math.random() - 0.5) * 180;
+                    const duration = 2.2 + Math.random() * 1.8; 
+
+                    particle.style.left = startX + 'px';
+                    particle.style.top = startY + 'px';
                     
-                    heart.style.left = left + '%';
-                    heart.style.top = '100px';
-                    heart.style.animationDuration = duration + 's';
+                    particle.style.setProperty('--end-x', endX + 'px');
+                    particle.style.setProperty('--end-y', endY + 'px');
+                    particle.style.setProperty('--end-scale', scale);
+                    particle.style.setProperty('--end-rotate', rotate + 'deg');
                     
-                    envelope.appendChild(heart);
+                    particle.style.animation = `dynamicFloat ${duration}s cubic-bezier(0.1, 0.8, 0.3, 1) forwards`;
+                    
+                    envelope.appendChild(particle);
                     
                     setTimeout(() => {
-                        heart.remove();
+                        particle.remove();
                     }, duration * 1000);
-                }, i * 100); 
+                    
+                }, i * 60); // Fluid stagger effect
             }
         }
 
-        // 2. Countdown Logic (June 5, 2026)
+        // 2. Countdown Logic Module (June 5, 2026)
         const countDownDate = new Date("June 5, 2026 19:00:00").getTime();
 
         const countdownTimer = setInterval(function() {
@@ -656,7 +759,7 @@
             }
         }, 1000);
 
-        // 3. Scroll Reveal Animations
+        // 3. Scroll Reveal Engine
         function initScrollAnimations() {
             const reveals = document.querySelectorAll('.reveal');
             
@@ -668,8 +771,8 @@
                     }
                 });
             }, {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
+                threshold: 0.12,
+                rootMargin: "0px 0px -40px 0px"
             });
 
             reveals.forEach(reveal => {
