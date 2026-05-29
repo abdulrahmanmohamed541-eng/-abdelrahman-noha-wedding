@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عبد الرحمن ♥ نهى</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Tahoma,Arial,sans-serif;background:#0a0a0a;color:#f5d98f;overflow-x:hidden}
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.envelope{font-size:140px;cursor:pointer;animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-15px)}}
+.hidden{display:none}
+section{padding:80px 20px;text-align:center}
+h1{font-size:56px}
+h2{font-size:34px;margin-bottom:20px}
+.gold{color:#d4af37}
+.line{width:140px;height:2px;background:#d4af37;margin:25px auto}
+.card{max-width:1000px;margin:auto}
+.btn{display:inline-block;background:#d4af37;color:#111;padding:16px 30px;border-radius:40px;text-decoration:none;font-weight:bold}
+.count{font-size:28px;margin-top:20px}
+.fade{animation:fade 1.5s}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div id="start" class="hero">
+<div class="envelope" onclick="openInvite()">💌</div>
+<h2>اضغط على الظرف لفتح الدعوة</h2>
+</div>
+
+<div id="site" class="hidden fade">
+
+<section>
+<h1 class="gold">عبد الرحمن ♥ نهى</h1>
+<div class="line"></div>
+<p style="font-size:22px;max-width:700px;margin:auto;">
+بسم الله الرحمن الرحيم<br><br>
+ومن آياته أن خلق لكم من أنفسكم أزواجًا لتسكنوا إليها وجعل بينكم مودة ورحمة.<br><br>
+يسرنا أن تشاركونا فرحتنا في بداية أجمل فصول حياتنا.
+</p>
+</section>
+
+<section>
+<h2>موعد الزفاف</h2>
+<div class="line"></div>
+<p style="font-size:24px">الجمعة 05 يونيو 2026</p>
+<p style="font-size:24px">قاعة فيستفال – الزقازيق</p>
+<div id="countdown" class="count"></div>
+</section>
+
+<section>
+<h2>كلمة من القلب</h2>
+<div class="line"></div>
+<p style="font-size:21px;max-width:800px;margin:auto;line-height:2">
+وجودكم بيننا هو أجمل هدية، ومشاركتكم لنا هذه اللحظات تجعل فرحتنا أكثر اكتمالاً.
+ننتظركم بكل حب لنحتفل معًا بيوم سيبقى ذكرى خالدة في قلوبنا.
+</p>
+</section>
+
+<section>
+<a class="btn" href="https://maps.app.goo.gl/raRKWqD4DBFMRfLU8?g_st=ic" target="_blank">📍 موقع الحفل</a>
+</section>
+
+<section>
+<h2>English Invitation</h2>
+<div class="line"></div>
+<p style="font-size:22px">
+Abdelrahman & Noha
+<br><br>
+Together with their families,<br>
+request the pleasure of your company<br>
+at their wedding celebration.
+<br><br>
+Friday, June 5, 2026<br>
+Festival Hall – Zagazig
+</p>
+</section>
+
+</div>
+
+<script>
+function openInvite(){
+document.getElementById('start').style.display='none';
+document.getElementById('site').classList.remove('hidden');
+}
+
+const target=new Date("2026-06-05T19:00:00");
+setInterval(()=>{
+const now=new Date();
+const diff=target-now;
+if(diff<0)return;
+const d=Math.floor(diff/86400000);
+const h=Math.floor((diff%86400000)/3600000);
+const m=Math.floor((diff%3600000)/60000);
+document.getElementById('countdown').innerHTML=
+"⏳ متبقي "+d+" يوم و "+h+" ساعة و "+m+" دقيقة";
+},1000);
+</script>
+
+</body>
+</html>
