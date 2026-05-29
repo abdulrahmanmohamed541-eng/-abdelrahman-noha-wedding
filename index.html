@@ -6,7 +6,7 @@
     <title>Abdelrahman & Noha - Wedding Invitation</title>
     
     <!-- Elegant Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&family=Amiri:ital@0;1&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         /* --- Color Palette & Variables --- */
@@ -27,7 +27,7 @@
         }
 
         body, html {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Montserrat', 'Cairo', sans-serif;
             background-color: var(--cream);
             color: var(--text-dark);
             overflow-x: hidden;
@@ -35,8 +35,20 @@
         }
 
         h1, h2, h3, h4 {
-            font-family: 'Cinzel', serif;
+            font-family: 'Cinzel', 'Cairo', serif;
             font-weight: 400;
+        }
+
+        /* --- Bilingual Text Helpers --- */
+        .ar-text {
+            direction: rtl;
+            font-family: 'Amiri', 'Cairo', serif;
+            margin-bottom: 8px;
+        }
+        
+        .en-text {
+            direction: ltr;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* --- Permanent Background Setup --- */
@@ -84,7 +96,7 @@
         }
 
         .tap-text {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Playfair Display', 'Cairo', serif;
             font-style: italic;
             color: #fff;
             text-shadow: 0 2px 10px rgba(0,0,0,0.4);
@@ -92,6 +104,7 @@
             letter-spacing: 3px;
             font-size: 1.2rem;
             animation: pulse 2s infinite;
+            text-align: center;
         }
 
         @keyframes pulse {
@@ -268,64 +281,90 @@
         }
 
         .hero-section {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         /* Premium Glassmorphism Container */
         .glass-card {
-            background: rgba(253, 251, 247, 0.82);
+            background: rgba(253, 251, 247, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(197, 168, 105, 0.35);
             border-radius: 24px;
-            padding: 60px 35px;
+            padding: 50px 35px;
             text-align: center;
             width: 100%;
             max-width: 600px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         }
 
-        .glass-card .grace-text {
-            font-family: 'Cinzel', serif;
+        .glass-card .grace-text-ar {
+            font-family: 'Amiri', serif;
             color: var(--soft-gold);
-            font-size: 1.15rem;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
         }
 
-        .glass-card .families-text {
-            font-size: 0.85rem;
+        .glass-card .grace-text-en {
+            font-family: 'Cinzel', serif;
+            color: var(--soft-gold);
+            font-size: 1.05rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .glass-card .families-text-ar {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .glass-card .families-text-en {
+            font-size: 0.8rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--text-light);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .glass-card h1 {
-            font-size: 2.8rem;
-            letter-spacing: 4px;
             color: var(--text-dark);
-            margin-bottom: 20px;
-            line-height: 1.3;
+            margin-bottom: 25px;
+            line-height: 1.4;
         }
 
-        .glass-card .ampersand {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem;
-            color: var(--soft-gold);
+        .glass-card h1 .name-ar {
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
+            font-weight: 600;
             display: block;
-            margin: -8px 0;
+            margin-bottom: 10px;
         }
 
-        .glass-card .presence-text {
-            font-size: 1.05rem;
-            line-height: 1.9;
+        .glass-card h1 .name-en {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            letter-spacing: 3px;
+            display: block;
+        }
+
+        .glass-card .presence-text-ar {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
             color: var(--text-dark);
-            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .glass-card .presence-text-en {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
         }
 
         /* --- Content Sections --- */
@@ -339,22 +378,50 @@
         .bg-sage { background-color: var(--sage-green); color: var(--ivory); }
 
         .section-title {
-            font-size: 2.1rem;
-            color: var(--soft-gold);
             margin-bottom: 35px;
-            letter-spacing: 3px;
+        }
+        
+        .section-title .title-ar {
+            font-family: 'Amiri', serif;
+            font-size: 2.4rem;
+            display: block;
+            margin-bottom: 5px;
         }
 
-        .bg-sage .section-title {
+        .section-title .title-en {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            display: block;
+        }
+
+        .bg-sage .section-title .title-ar,
+        .bg-sage .section-title .title-en {
             color: var(--ivory);
+        }
+        
+        .bg-cream .section-title .title-ar,
+        .bg-cream .section-title .title-en {
+            color: var(--soft-gold);
         }
 
         .invitation-text p {
             max-width: 650px;
-            margin: 0 auto 25px;
+            margin: 0 auto;
             line-height: 1.9;
-            font-size: 1.15rem;
+        }
+        
+        .invitation-text p.ar-p {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.25rem;
             color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .invitation-text p.en-p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 35px;
         }
 
         /* --- Premium Countdown System --- */
@@ -390,6 +457,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             opacity: 0.9;
+            display: block;
         }
 
         /* --- Cards & Grid Layouts --- */
@@ -418,16 +486,40 @@
         }
 
         .detail-card h3 {
-            font-size: 1.6rem;
             margin-bottom: 15px;
             color: var(--sage-dark);
+        }
+        
+        .detail-card h3 .card-title-ar {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .detail-card h3 .card-title-en {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
             letter-spacing: 1px;
+            display: block;
         }
 
         .detail-card p {
             line-height: 1.8;
-            color: var(--text-light);
             font-size: 1.05rem;
+        }
+        
+        .detail-card p.card-val-ar {
+            font-family: 'Cairo', sans-serif;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .detail-card p.card-val-en {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
         }
 
         .btn-gold {
@@ -443,6 +535,7 @@
             font-weight: 500;
             box-shadow: 0 5px 15px rgba(197, 168, 105, 0.3);
             transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            font-family: 'Montserrat', 'Cairo', sans-serif;
         }
 
         .btn-gold:hover {
@@ -460,17 +553,42 @@
 
         .footer p {
             max-width: 620px;
-            margin: 0 auto 20px;
+            margin: 0 auto;
             line-height: 1.9;
-            font-size: 1.1rem;
+        }
+        
+        .footer p.foot-ar {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .footer p.foot-en {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
             color: var(--text-light);
+            margin-bottom: 30px;
         }
 
         .signature {
+            margin: 45px 0;
+        }
+        
+        .signature .sig-ar {
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--soft-gold);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .signature .sig-en {
             font-family: 'Great Vibes', cursive;
             font-size: 3.4rem;
             color: var(--soft-gold);
-            margin: 45px 0;
+            display: block;
         }
 
         .bottom-bar {
@@ -498,14 +616,15 @@
         /* --- Premium Mobile Optimization --- */
         @media (max-width: 768px) {
             .glass-card { padding: 45px 25px; }
-            .glass-card h1 { font-size: 2.1rem; }
-            .glass-card .ampersand { font-size: 2.6rem; }
-            .section-title { font-size: 1.6rem; }
+            .glass-card h1 .name-ar { font-size: 2.5rem; }
+            .glass-card h1 .name-en { font-size: 1.6rem; }
+            .section-title .title-ar { font-size: 1.9rem; }
+            .section-title .title-en { font-size: 1.3rem; }
             .envelope-wrapper { transform: scale(0.88); }
             section { padding: 70px 15px; }
             .time-box { min-width: 85px; padding: 20px 10px; }
             .time-box span { font-size: 2rem; }
-            .bg-image { background-position: center 30%; } /* Optimization to lift palace building up over mobile UI blocks */
+            .bg-image { background-position: center 30%; }
         }
     </style>
 </head>
@@ -518,7 +637,10 @@
 
     <!-- Intro Envelope Screen Overlay -->
     <div id="intro-screen">
-        <div class="tap-text">Tap to open</div>
+        <div class="tap-text">
+            <div class="ar-text" style="font-size: 1.4rem; margin-bottom: 4px;">إضغط لفتح الدعوة</div>
+            <div class="en-text">Tap to open</div>
+        </div>
         <div class="envelope-wrapper">
             <div class="envelope-container" id="envelope">
                 <div class="envelope-back"></div>
@@ -538,40 +660,43 @@
         <!-- Hero Section Frame -->
         <section class="hero-section">
             <div class="glass-card reveal">
-                <p class="grace-text">By the Grace of Allah,</p>
-                <p class="families-text">Together with their families,</p>
+                <p class="grace-text-ar">بسم الله الرحمن الرحيم</p>
+                <p class="grace-text-en">In the Name of Allah, The Most Gracious, The Most Merciful</p>
                 
-                <h1>ABDELRAHMAN<br><span class="ampersand">&</span>NOHA</h1>
+                <p class="families-text-ar">بفضل الله تعالى، وبحضور عائلتينا الكريمتين</p>
+                <p class="families-text-en">By the Grace of Allah, together with our families</p>
+                
+                <h1>
+                    <span class="name-ar">عبدالرحمن و نهى</span>
+                    <span class="name-en">Abdelrahman & Noha</span>
+                </h1>
                 
                 <div style="height: 1px; width: 50px; background: var(--soft-gold); margin: 25px auto;"></div>
                 
-                <p class="presence-text">
-                    request the honor of your presence<br>at the celebration of their marriage.
-                </p>
+                <p class="presence-text-ar">يتشرفان بدعوتكم لحضور حفل زفافهما</p>
+                <p class="presence-text-en">Request the honor of your presence at the celebration of their marriage</p>
             </div>
         </section>
 
         <!-- Invitation Context Section -->
         <section class="bg-cream" style="padding: 100px 20px;">
             <div class="invitation-text reveal">
-                <p>
-                    Your presence and prayers<br>
-                    will make this joyful occasion<br>
-                    even more meaningful and memorable.
-                </p>
+                <p class="ar-p">حضوركم ودعواتكم الكريمة سيجعل هذه المناسبة أكثر سعادة وذكرى لا تُنسى</p>
+                <p class="en-p">Your presence and prayers will make this joyful occasion even more meaningful and memorable</p>
                 
                 <div style="height: 1px; width: 40px; background: var(--soft-gold); margin: 35px auto;"></div>
                 
-                <p style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-light); font-size: 1.25rem;">
-                    We look forward to sharing this special day<br>
-                    with our beloved family and friends.
-                </p>
+                <p class="ar-p" style="font-family: 'Amiri', serif; font-style: italic; color: var(--text-light); font-size: 1.4rem;">نتطلع للاحتفال بهذه المناسبة السعيدة معكم</p>
+                <p class="en-p" style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-light); font-size: 1.25rem;">We look forward to sharing this special day with you</p>
             </div>
         </section>
 
         <!-- Countdown Block -->
         <section class="bg-sage">
-            <h2 class="section-title reveal">COUNTDOWN TO OUR WEDDING DAY</h2>
+            <h2 class="section-title reveal">
+                <span class="title-ar">العد التنازلي لحفل الزفاف</span>
+                <span class="title-en">Countdown To Our Wedding Day</span>
+            </h2>
             
             <div class="countdown-wrapper reveal">
                 <div class="time-box">
@@ -598,16 +723,26 @@
             <div class="details-grid">
                 <div class="detail-card reveal">
                     <div class="detail-icon">🗓️</div>
-                    <h3>When</h3>
-                    <p style="font-weight: 500; color: var(--text-dark); margin-bottom: 5px;">Friday, June 5, 2026</p>
-                    <p>9:00 PM</p>
+                    <h3>
+                        <span class="card-title-ar">الموعد</span>
+                        <span class="card-title-en">When</span>
+                    </h3>
+                    <p class="card-val-ar">الجمعة 5 يونيو 2026</p>
+                    <p class="card-val-ar" style="font-size: 1.1rem; margin-bottom: 12px;">الساعة 9:00 مساءً</p>
+                    <p class="card-val-en" style="font-weight: 500; color: var(--text-dark); margin-bottom: 2px;">Friday, June 5, 2026</p>
+                    <p class="card-val-en">9:00 PM</p>
                 </div>
 
                 <div class="detail-card reveal">
                     <div class="detail-icon">🏛️</div>
-                    <h3>Wedding Venue</h3>
-                    <p style="font-weight: 500; color: var(--text-dark); margin-bottom: 5px;">Festival Hall</p>
-                    <p>Zagazig, Egypt</p>
+                    <h3>
+                        <span class="card-title-ar">مكان الحفل</span>
+                        <span class="card-title-en">Wedding Venue</span>
+                    </h3>
+                    <p class="card-val-ar">قاعة فيستيفال</p>
+                    <p class="card-val-ar" style="font-size: 1.1rem; margin-bottom: 12px;">الزقازيق - مصر</p>
+                    <p class="card-val-en" style="font-weight: 500; color: var(--text-dark); margin-bottom: 2px;">Festival Hall</p>
+                    <p class="card-val-en">Zagazig, Egypt</p>
                     <a href="https://maps.app.goo.gl/raRKWqD4DBFMRfLU8" target="_blank" class="btn-gold">OPEN LOCATION</a>
                 </div>
             </div>
@@ -615,16 +750,27 @@
 
         <!-- Final Signoff Block -->
         <footer class="footer">
-            <h2 class="section-title reveal" style="font-size: 1.5rem; margin-bottom: 25px;">WE LOOK FORWARD TO CELEBRATING WITH YOU</h2>
+            <h2 class="section-title reveal" style="margin-bottom: 25px;">
+                <span class="title-ar" style="font-size: 1.8rem;">شكراً لكونكم جزءاً من يومنا المميز</span>
+                <span class="title-en" style="font-size: 1.3rem;">Thank you for being part of our special day</span>
+            </h2>
             <div class="reveal">
-                <p>Thank you for being part of our special day.</p>
-                <p>May Allah bless this gathering with happiness, mercy, tranquility, and countless beautiful memories.</p>
-                <p style="margin-top: 35px; font-family: 'Cinzel', serif; letter-spacing: 2px;">With Best Wishes,</p>
-                <div class="signature">Abdelrahman & Noha</div>
+                <p class="foot-ar">نسأل الله أن يبارك هذا الزواج ويملأ حياتنا بالمودة والرحمة والسعادة</p>
+                <p class="foot-en">May Allah bless this marriage with love, mercy, happiness, and countless beautiful memories</p>
+                
+                <p style="margin-top: 35px; font-family: 'Cairo', 'Cinzel', serif; letter-spacing: 2px;">
+                    <span style="font-family: 'Cairo'; font-weight: 600; display: block; margin-bottom: 4px; color: var(--text-dark);">مع أطيب الأمنيات</span>
+                    <span style="font-family: 'Cinzel'; font-size: 0.9rem; color: var(--text-light); display: block; text-transform: uppercase;">With Best Wishes</span>
+                </p>
+                
+                <div class="signature">
+                    <span class="sig-ar">عبدالرحمن و نهى</span>
+                    <span class="sig-en">Abdelrahman & Noha</span>
+                </div>
             </div>
             
             <div class="bottom-bar">
-                BY THE GRACE OF ALLAH
+                بفضل الله تعالى | BY THE GRACE OF ALLAH
             </div>
         </footer>
 
